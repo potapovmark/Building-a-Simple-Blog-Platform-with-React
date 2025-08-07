@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Building-a-Simple-Blog-Platform-with-React/static/css/main.058aee4f.css",
+    "main.js": "/Building-a-Simple-Blog-Platform-with-React/static/js/main.4c650354.js",
+    "static/js/453.4064cff9.chunk.js": "/Building-a-Simple-Blog-Platform-with-React/static/js/453.4064cff9.chunk.js",
+    "index.html": "/Building-a-Simple-Blog-Platform-with-React/index.html",
+    "main.058aee4f.css.map": "/Building-a-Simple-Blog-Platform-with-React/static/css/main.058aee4f.css.map",
+    "main.4c650354.js.map": "/Building-a-Simple-Blog-Platform-with-React/static/js/main.4c650354.js.map",
+    "453.4064cff9.chunk.js.map": "/Building-a-Simple-Blog-Platform-with-React/static/js/453.4064cff9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.058aee4f.css",
+    "static/js/main.4c650354.js"
+  ]
+}
