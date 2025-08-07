@@ -1,9 +1,9 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/Header';
-import ArticleList from './components/ArticleList';
-import ArticleDetail from './components/ArticleDetail';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import ArticleList from "./components/ArticleList";
+import ArticleDetail from "./components/ArticleDetail";
+import "./App.css";
 
 function App() {
   return (
@@ -22,4 +22,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;
