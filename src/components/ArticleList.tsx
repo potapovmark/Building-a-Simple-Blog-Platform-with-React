@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { articlesApi } from '../services/api';
-import { Article } from '../types';
-import './ArticleList.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { articlesApi } from "../services/api";
+import { Article } from "../types";
+import "./ArticleList.css";
 
 const ArticleList: React.FC = () => {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -23,17 +23,17 @@ const ArticleList: React.FC = () => {
       setArticles(response.articles);
       setTotalPages(Math.ceil(response.articlesCount / 10));
     } catch (err) {
-      setError('Ошибка при загрузке статей');
+      setError("Ошибка при загрузке статей");
     } finally {
       setLoading(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ru-RU', {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
+    return new Date(dateString).toLocaleDateString("ru-RU", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
     });
   };
 
@@ -54,11 +54,11 @@ const ArticleList: React.FC = () => {
               <div className="author-info">
                 <div className="author-avatar">
                   <img
-                    src={article.author.image || '/default-avatar.svg'}
+                    src={article.author.image || "/default-avatar.svg"}
                     alt={article.author.username}
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = '/default-avatar.svg';
+                      target.src = "/default-avatar.svg";
                     }}
                   />
                 </div>
@@ -97,7 +97,7 @@ const ArticleList: React.FC = () => {
           <button
             key={page}
             onClick={() => setCurrentPage(page)}
-            className={`page-button ${currentPage === page ? 'active' : ''}`}
+            className={`page-button ${currentPage === page ? "active" : ""}`}
           >
             {page}
           </button>
