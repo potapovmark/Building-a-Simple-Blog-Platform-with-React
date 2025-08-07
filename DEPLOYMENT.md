@@ -40,4 +40,4 @@ https://potapovmark.github.io/Building-a-Simple-Blog-Platform-with-React
 
 - Убедитесь, что в настройках репозитория включены GitHub Actions
 - Проверьте, что у Actions есть права на запись в репозиторий
-- Логи деплоя можно посмотреть в разделе "Actions" на GitHub 
+- Логи деплоя можно посмотреть в разделе "Actions" на GitHub
