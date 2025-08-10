@@ -54,12 +54,8 @@ const ArticleList: React.FC = () => {
               <div className="author-info">
                 <div className="author-avatar">
                   <img
-                    src={article.author.image || '/default-avatar.svg'}
+                    src={article.author.image || "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iNTAiIGN5PSI1MCIgcj0iNTAiIGZpbGw9IiNlMWUxZTEiLz48Y2lyY2xlIGN4PSI1MCIgY3k9IjM1IiByPSIxNSIgZmlsbD0iIzk5OSIvPjwvc3ZnPg=="}
                     alt={article.author.username}
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src = '/default-avatar.svg';
-                    }}
                   />
                 </div>
                 <div className="author-details">
