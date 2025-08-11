@@ -1,24 +1,33 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import Header from "./components/Header";
 import ArticleList from "./components/ArticleList";
 import ArticleDetail from "./components/ArticleDetail";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
+import Profile from "./pages/Profile";
 import "./App.css";
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<ArticleList />} />
-            <Route path="/articles" element={<ArticleList />} />
-            <Route path="/articles/:slug" element={<ArticleDetail />} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className="App">
+          <Header />
+          <main className="main-content">
+            <Routes>
+              <Route path="/" element={<ArticleList />} />
+              <Route path="/articles" element={<ArticleList />} />
+              <Route path="/articles/:slug" element={<ArticleDetail />} />
+              <Route path="/sign-in" element={<SignIn />} />
+              <Route path="/sign-up" element={<SignUp />} />
+              <Route path="/profile" element={<Profile />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

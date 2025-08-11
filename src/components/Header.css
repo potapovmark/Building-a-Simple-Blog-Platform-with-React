@@ -49,14 +49,57 @@
 .user-info {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
   color: #666;
   font-size: 14px;
+}
+
+.user-profile-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #666;
+  transition: color 0.2s;
+}
+
+.user-profile-link:hover {
+  color: #5cb85c;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .username {
   color: #5cb85c;
   font-weight: 500;
+}
+
+.logout-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 5px;
+}
+
+.logout-button:hover {
+  color: #d9534f;
+}
+
+.auth-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .banner {

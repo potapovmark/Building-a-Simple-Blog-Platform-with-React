@@ -1,8 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
 
 const Header: React.FC = () => {
+  const { user, logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <header className="header">
       <div className="header-content">
@@ -15,18 +22,43 @@ const Header: React.FC = () => {
               <span className="nav-icon">🏠</span>
               Home
             </Link>
-            <Link to="/new-post" className="nav-link">
-              <span className="nav-icon">✏️</span>
-              New Post
-            </Link>
-            <Link to="/settings" className="nav-link">
-              <span className="nav-icon">⚙️</span>
-              Settings
-            </Link>
-            <div className="user-info">
-              <span className="nav-icon">👤</span>
-              <span className="username">guest</span>
-            </div>
+
+            {user ? (
+              <>
+                <Link to="/new-post" className="nav-link">
+                  <span className="nav-icon">✏️</span>
+                  New Post
+                </Link>
+                <div className="user-info">
+                  <Link to="/profile" className="user-profile-link">
+                    <img
+                      src={
+                        user.image ||
+                        process.env.PUBLIC_URL + "/default-avatar.svg"
+                      }
+                      alt={user.username}
+                      className="user-avatar"
+                    />
+                    <span className="username">{user.username}</span>
+                  </Link>
+                  <button onClick={handleLogout} className="logout-button">
+                    <span className="nav-icon">🚪</span>
+                    Logout
+                  </button>
+                </div>
+              </>
+            ) : (
+              <div className="auth-links">
+                <Link to="/sign-in" className="nav-link">
+                  <span className="nav-icon">🔑</span>
+                  Sign In
+                </Link>
+                <Link to="/sign-up" className="nav-link">
+                  <span className="nav-icon">📝</span>
+                  Sign Up
+                </Link>
+              </div>
+            )}
           </nav>
         </div>
         <div className="banner">

@@ -59,7 +59,7 @@ const ArticleDetail: React.FC = () => {
               <img
                 src={
                   article.author.image ||
-                  "https://cdn-icons-png.flaticon.com/512/6858/6858504.png"
+                  process.env.PUBLIC_URL + "/default-avatar.svg"
                 }
                 alt={article.author.username}
               />
