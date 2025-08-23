@@ -9,9 +9,9 @@ import "./Auth.css";
 const schema = yup.object({
   email: yup
     .string()
-    .required("Email обязателен")
-    .email("Введите корректный email"),
-  password: yup.string().required("Пароль обязателен"),
+    .required("Email is required")
+    .email("Please enter a valid email"),
+  password: yup.string().required("Password is required"),
 });
 
 type SignInFormData = yup.InferType<typeof schema>;
@@ -41,7 +41,7 @@ const SignIn: React.FC = () => {
         const errorMessages = Object.values(error.response.data.errors).flat();
         setServerError(errorMessages.join(", "));
       } else {
-        setServerError("Неверный email или пароль");
+        setServerError("Invalid email or password");
       }
     } finally {
       setIsSubmitting(false);
@@ -51,7 +51,7 @@ const SignIn: React.FC = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <h1>Вход</h1>
+        <h1>Sign In</h1>
 
         {serverError && <div className="server-error">{serverError}</div>}
 
@@ -72,7 +72,7 @@ const SignIn: React.FC = () => {
             <input
               {...register("password")}
               type="password"
-              placeholder="Пароль"
+              placeholder="Password"
               className={errors.password ? "error" : ""}
             />
             {errors.password && (
@@ -80,13 +80,18 @@ const SignIn: React.FC = () => {
             )}
           </div>
 
-          <button type="submit" className="auth-button" disabled={isSubmitting}>
-            {isSubmitting ? "Вход..." : "Войти"}
+          <button
+            type="submit"
+            className="auth-button"
+            disabled={isSubmitting}
+            data-no-icon
+          >
+            {isSubmitting ? "Signing in..." : "Sign In"}
           </button>
         </form>
 
         <div className="auth-links">
-          Нет аккаунта? <Link to="/sign-up">Зарегистрироваться</Link>
+          Don't have an account? <Link to="/sign-up">Sign Up</Link>
         </div>
       </div>
     </div>

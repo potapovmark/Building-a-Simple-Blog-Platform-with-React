@@ -24,14 +24,14 @@ const ArticleDetail: React.FC = () => {
       const response = await articlesApi.getArticle(articleSlug);
       setArticle(response.article);
     } catch (err) {
-      setError("Ошибка при загрузке статьи");
+      setError("Error loading article");
     } finally {
       setLoading(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ru-RU", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -39,15 +39,15 @@ const ArticleDetail: React.FC = () => {
   };
 
   if (loading) {
-    return <div className="loading">Загрузка статьи...</div>;
+    return <div className="loading">⏳ Loading article...</div>;
   }
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return <div className="error">⚠ {error}</div>;
   }
 
   if (!article) {
-    return <div className="error">Статья не найдена</div>;
+    return <div className="error">⚠ Article not found</div>;
   }
 
   return (
@@ -73,7 +73,7 @@ const ArticleDetail: React.FC = () => {
           </div>
         </div>
         <div className="like-button">
-          <span className="heart">♥</span>
+          <span className="heart">♡</span>
           <span className="likes-count">{article.favoritesCount}</span>
         </div>
       </div>
@@ -95,7 +95,7 @@ const ArticleDetail: React.FC = () => {
       </div>
 
       <div className="back-link">
-        <Link to="/">← Назад к списку статей</Link>
+        <Link to="/">← Back to articles</Link>
       </div>
     </div>
   );

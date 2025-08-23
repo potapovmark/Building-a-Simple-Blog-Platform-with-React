@@ -1,76 +1,120 @@
-# Realworld Blog
+# Realworld Blog Platform
 
-Простая платформа блога, созданная с использованием React и TypeScript.
+A full-featured blog platform with authentication system, built using React and TypeScript.
 
-## Функциональность
+## Functionality
 
-- Отображение списка статей с пагинацией
-- Просмотр отдельных статей с поддержкой Markdown
-- Навигация между страницами
-- Адаптивный дизайн
+### Core Features:
 
-## Технологии
+- Display list of articles with pagination
+- View individual articles with Markdown support
+- Navigation between pages
+- Responsive design
+
+### Authentication:
+
+- User registration
+- User login
+- User profile editing
+- Automatic session saving
+- User logout
+
+## Technologies
 
 - React 19
 - TypeScript
-- React Router DOM
-- Axios для API запросов
-- React Markdown для рендеринга Markdown
-- Husky для Git hooks
-- Prettier для форматирования кода
-- ESLint для линтинга
+- React Router DOM v6
+- Axios for API requests
+- React Markdown for Markdown rendering
+- React Hook Form + Yup for form validation
+- Husky for Git hooks
+- Prettier for code formatting
+- ESLint for linting
 
-## Установка и запуск
+## Installation and Setup
 
-1. Клонируйте репозиторий:
+1. Clone the repository:
 
 ```bash
 git clone <repository-url>
 cd realworld-blog
 ```
 
-2. Установите зависимости:
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-3. Запустите проект:
+3. Start the project:
 
 ```bash
 npm start
 ```
 
-4. Откройте [http://localhost:3000](http://localhost:3000) в браузере.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## API
 
-Проект использует RealWorld API: https://realworld.habsida.net/api
+The project uses RealWorld API: https://realworld.habsida.net/api
 
-## Структура проекта
+## Project Structure
 
 ```
 src/
 ├── components/
-│   ├── ArticleList.tsx      # Список статей
-│   ├── ArticleDetail.tsx    # Детальная страница статьи
-│   ├── Header.tsx          # Заголовок с навигацией
-│   └── *.css               # Стили компонентов
+│   ├── ArticleList.tsx      # Article list
+│   ├── ArticleDetail.tsx    # Article detail page
+│   ├── Header.tsx          # Header with navigation
+│   └── *.css               # Component styles
+├── pages/
+│   ├── SignIn.tsx          # Login page
+│   ├── SignUp.tsx          # Registration page
+│   ├── Profile.tsx         # Profile editing page
+│   └── Auth.css            # Authentication page styles
+├── contexts/
+│   └── AuthContext.tsx     # Authentication context
 ├── services/
-│   └── api.ts              # API сервис
+│   └── api.ts              # API service
 ├── types/
-│   └── index.ts            # TypeScript типы
-└── App.tsx                 # Главный компонент
+│   └── index.ts            # TypeScript types
+└── App.tsx                 # Main component
 ```
 
-## Скрипты
+## Scripts
 
-- `npm start` - Запуск в режиме разработки
-- `npm build` - Сборка для продакшена
-- `npm test` - Запуск тестов
-- `npm run lint` - Проверка кода ESLint
-- `npm run format` - Форматирование кода Prettier
+- `npm start` - Start development mode
+- `npm run build` - Build for production
+- `npm run lint` - ESLint code check
+- `npm run format` - Prettier code formatting
+- `npm run deploy` - Deploy to GitHub Pages
+
+## Form Validation
+
+### Registration:
+
+- Email: valid email address
+- Username: 3-20 characters
+- Password: 6-40 characters
+- Password confirmation
+- Data processing agreement
+
+### Login:
+
+- Email: valid email address
+- Password: required field
+
+### Profile:
+
+- Username: required field
+- Email: valid email address
+- Password: optional, 6-40 characters
+- Avatar: valid URL
 
 ## Git Hooks
 
-Husky настроен для автоматического запуска линтинга и форматирования при push в репозиторий.
+Husky is configured to automatically run linting and formatting when pushing to the repository.
+
+## Deployment
+
+The project is automatically deployed to GitHub Pages when running `npm run deploy`.

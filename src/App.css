@@ -1,6 +1,8 @@
 .App {
   min-height: 100vh;
   background-color: #f8f9fa;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .main-content {

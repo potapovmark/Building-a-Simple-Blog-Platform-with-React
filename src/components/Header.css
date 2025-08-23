@@ -6,6 +6,8 @@
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-top {
@@ -13,6 +15,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 15px 20px;
+  min-height: 60px;
 }
 
 .logo {
@@ -26,6 +29,7 @@
   display: flex;
   align-items: center;
   gap: 20px;
+  height: 100%;
 }
 
 .nav-link {
@@ -36,6 +40,8 @@
   color: #666;
   font-size: 14px;
   transition: color 0.2s;
+  height: 100%;
+  padding: 8px 0;
 }
 
 .nav-link:hover {
@@ -44,6 +50,20 @@
 
 .nav-icon {
   font-size: 16px;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.nav-icon img {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
 }
 
 .user-info {
@@ -52,6 +72,7 @@
   gap: 15px;
   color: #666;
   font-size: 14px;
+  height: 100%;
 }
 
 .user-profile-link {
@@ -65,6 +86,13 @@
 
 .user-profile-link:hover {
   color: #5cb85c;
+}
+
+.user-profile-display {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #666;
 }
 
 .user-avatar {
@@ -96,10 +124,20 @@
   color: #d9534f;
 }
 
+.logout-button .nav-icon {
+  font-size: 14px;
+  transition: transform 0.2s;
+}
+
+.logout-button:hover .nav-icon {
+  transform: scale(1.1);
+}
+
 .auth-links {
   display: flex;
   align-items: center;
   gap: 15px;
+  height: 100%;
 }
 
 .banner {
@@ -107,8 +145,8 @@
   color: white;
   text-align: center;
   padding: 40px 20px;
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
+  width: 100%;
+  margin: 0;
 }
 
 .banner-title {

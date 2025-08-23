@@ -3,8 +3,16 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "./Header.css";
 
+// Import original SVG icons
+import settingsIcon from "../assets/icons/settings.svg";
+import profileIcon from "../assets/icons/profile.svg";
+import newPostIcon from "../assets/icons/newpost.svg";
+
 const Header: React.FC = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, userVersion } = useAuth();
+
+  // Отладочная информация
+  console.log("Header render - user:", user?.username, "version:", userVersion);
 
   const handleLogout = () => {
     logout();
@@ -19,30 +27,26 @@ const Header: React.FC = () => {
           </Link>
           <nav className="nav">
             <Link to="/" className="nav-link">
-              <span className="nav-icon">🏠</span>
               Home
             </Link>
 
             {user ? (
               <>
                 <Link to="/new-post" className="nav-link">
-                  <span className="nav-icon">✏️</span>
+                  <img src={newPostIcon} alt="New Post" className="nav-icon" />
                   New Post
                 </Link>
+                <Link to="/settings" className="nav-link">
+                  <img src={settingsIcon} alt="Settings" className="nav-icon" />
+                  Settings
+                </Link>
                 <div className="user-info">
-                  <Link to="/profile" className="user-profile-link">
-                    <img
-                      src={
-                        user.image ||
-                        process.env.PUBLIC_URL + "/default-avatar.svg"
-                      }
-                      alt={user.username}
-                      className="user-avatar"
-                    />
+                  <div className="user-profile-display">
+                    <img src={profileIcon} alt="Profile" className="nav-icon" />
                     <span className="username">{user.username}</span>
-                  </Link>
+                  </div>
                   <button onClick={handleLogout} className="logout-button">
-                    <span className="nav-icon">🚪</span>
+                    <span className="nav-icon">⇥</span>
                     Logout
                   </button>
                 </div>
@@ -50,11 +54,9 @@ const Header: React.FC = () => {
             ) : (
               <div className="auth-links">
                 <Link to="/sign-in" className="nav-link">
-                  <span className="nav-icon">🔑</span>
                   Sign In
                 </Link>
                 <Link to="/sign-up" className="nav-link">
-                  <span className="nav-icon">📝</span>
                   Sign Up
                 </Link>
               </div>

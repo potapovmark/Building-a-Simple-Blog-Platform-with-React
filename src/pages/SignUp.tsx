@@ -9,26 +9,26 @@ import "./Auth.css";
 const schema = yup.object({
   username: yup
     .string()
-    .required("Имя пользователя обязательно")
-    .min(3, "Имя пользователя должно содержать минимум 3 символа")
-    .max(20, "Имя пользователя должно содержать максимум 20 символов"),
+    .required("Username is required")
+    .min(3, "Username must be at least 3 characters")
+    .max(20, "Username must be no more than 20 characters"),
   email: yup
     .string()
-    .required("Email обязателен")
-    .email("Введите корректный email"),
+    .required("Email is required")
+    .email("Please enter a valid email"),
   password: yup
     .string()
-    .required("Пароль обязателен")
-    .min(6, "Пароль должен содержать минимум 6 символов")
-    .max(40, "Пароль должен содержать максимум 40 символов"),
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .max(40, "Password must be no more than 40 characters"),
   confirmPassword: yup
     .string()
-    .required("Подтвердите пароль")
-    .oneOf([yup.ref("password")], "Пароли должны совпадать"),
+    .required("Please confirm your password")
+    .oneOf([yup.ref("password")], "Passwords must match"),
   agreeToTerms: yup
     .boolean()
-    .required("Необходимо согласие на обработку персональных данных")
-    .oneOf([true], "Необходимо согласие на обработку персональных данных"),
+    .required("You must agree to the terms and conditions")
+    .oneOf([true], "You must agree to the terms and conditions"),
 });
 
 type SignUpFormData = {
@@ -64,7 +64,7 @@ const SignUp: React.FC = () => {
         const errorMessages = Object.values(error.response.data.errors).flat();
         setServerError(errorMessages.join(", "));
       } else {
-        setServerError("Произошла ошибка при регистрации");
+        setServerError("An error occurred during registration");
       }
     } finally {
       setIsSubmitting(false);
@@ -74,7 +74,7 @@ const SignUp: React.FC = () => {
   return (
     <div className="auth-page">
       <div className="auth-container">
-        <h1>Регистрация</h1>
+        <h1>Sign Up</h1>
 
         {serverError && <div className="server-error">{serverError}</div>}
 
@@ -83,7 +83,7 @@ const SignUp: React.FC = () => {
             <input
               {...register("username")}
               type="text"
-              placeholder="Имя пользователя"
+              placeholder="Username"
               className={errors.username ? "error" : ""}
             />
             {errors.username && (
@@ -107,7 +107,7 @@ const SignUp: React.FC = () => {
             <input
               {...register("password")}
               type="password"
-              placeholder="Пароль"
+              placeholder="Password"
               className={errors.password ? "error" : ""}
             />
             {errors.password && (
@@ -119,7 +119,7 @@ const SignUp: React.FC = () => {
             <input
               {...register("confirmPassword")}
               type="password"
-              placeholder="Подтвердите пароль"
+              placeholder="Confirm Password"
               className={errors.confirmPassword ? "error" : ""}
             />
             {errors.confirmPassword && (
@@ -132,7 +132,7 @@ const SignUp: React.FC = () => {
           <div className="form-group checkbox-group">
             <label>
               <input {...register("agreeToTerms")} type="checkbox" />
-              <span>Я согласен на обработку персональных данных</span>
+              <span>I agree to the terms and conditions</span>
             </label>
             {errors.agreeToTerms && (
               <span className="error-message">
@@ -142,12 +142,12 @@ const SignUp: React.FC = () => {
           </div>
 
           <button type="submit" className="auth-button" disabled={isSubmitting}>
-            {isSubmitting ? "Регистрация..." : "Зарегистрироваться"}
+            {isSubmitting ? "Signing up..." : "Sign Up"}
           </button>
         </form>
 
         <div className="auth-links">
-          Уже есть аккаунт? <Link to="/sign-in">Войти</Link>
+          Already have an account? <Link to="/sign-in">Sign In</Link>
         </div>
       </div>
     </div>

@@ -23,14 +23,14 @@ const ArticleList: React.FC = () => {
       setArticles(response.articles);
       setTotalPages(Math.ceil(response.articlesCount / 10));
     } catch (err) {
-      setError("Ошибка при загрузке статей");
+      setError("Error loading articles");
     } finally {
       setLoading(false);
     }
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("ru-RU", {
+    return new Date(dateString).toLocaleDateString("en-US", {
       day: "numeric",
       month: "long",
       year: "numeric",
@@ -38,11 +38,11 @@ const ArticleList: React.FC = () => {
   };
 
   if (loading && articles.length === 0) {
-    return <div className="loading">Загрузка статей...</div>;
+    return <div className="loading">⏳ Loading articles...</div>;
   }
 
   if (error) {
-    return <div className="error">{error}</div>;
+    return <div className="error">⚠ {error}</div>;
   }
 
   return (
@@ -70,7 +70,7 @@ const ArticleList: React.FC = () => {
               </div>
             </div>
             <div className="like-button">
-              <span className="heart">♥</span>
+              <span className="heart">♡</span>
               <span className="likes-count">{article.favoritesCount}</span>
             </div>
           </div>
