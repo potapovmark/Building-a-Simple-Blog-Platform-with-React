@@ -63,8 +63,8 @@ export const authApi = {
   updateProfile: async (
     userData: UpdateProfileRequest,
   ): Promise<AuthResponse> => {
-    console.log("API: Sending profile update request:", { user: userData });
-    const response = await api.put("/user", { user: userData });
+    console.log("API: Sending profile update request:", userData);
+    const response = await api.put("/user", userData);
     console.log("API: Profile update response:", response.data);
     return response.data;
   },
