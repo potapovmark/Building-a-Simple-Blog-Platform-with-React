@@ -8,6 +8,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import Settings from "./pages/Settings";
 import NewPost from "./pages/NewPost";
+import EditArticle from "./pages/EditArticle";
 import "./App.css";
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
               <Route path="/sign-in" element={<SignIn />} />
               <Route path="/sign-up" element={<SignUp />} />
               <Route path="/settings" element={<Settings />} />
-              <Route path="/new-post" element={<NewPost />} />
+              <Route path="/new-article" element={<NewPost />} />
+              <Route path="/articles/:slug/edit" element={<EditArticle />} />
             </Routes>
           </main>
         </div>

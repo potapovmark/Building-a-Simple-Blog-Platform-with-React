@@ -65,3 +65,25 @@ export interface ProfileResponse {
     following: boolean;
   };
 }
+
+export interface CreateArticleRequest {
+  title: string;
+  description: string;
+  body: string;
+  tagList?: string[];
+}
+
+export interface UpdateArticleRequest {
+  title?: string;
+  description?: string;
+  body?: string;
+  tagList?: string[];
+}
+
+export interface CreateArticleResponse {
+  article: Article;
+}
+
+export interface UpdateArticleResponse {
+  article: Article;
+}

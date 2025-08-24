@@ -7,6 +7,10 @@ import {
   UpdateProfileRequest,
   AuthResponse,
   ProfileResponse,
+  CreateArticleRequest,
+  UpdateArticleRequest,
+  CreateArticleResponse,
+  UpdateArticleResponse,
 } from "../types";
 
 const API_BASE_URL = "https://realworld.habsida.net/api";
@@ -41,6 +45,41 @@ export const articlesApi = {
   getArticle: async (slug: string): Promise<SingleArticleResponse> => {
     const response = await api.get(`/articles/${slug}`);
     return response.data;
+  },
+
+  createArticle: async (
+    articleData: CreateArticleRequest,
+  ): Promise<CreateArticleResponse> => {
+    console.log("API: Creating article with data:", articleData);
+    try {
+      const response = await api.post("/articles", { article: articleData });
+      console.log("API: Article created successfully:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("API: Error creating article:", error);
+      throw error;
+    }
+  },
+
+  updateArticle: async (
+    slug: string,
+    articleData: UpdateArticleRequest,
+  ): Promise<UpdateArticleResponse> => {
+    console.log("API: Updating article", slug, "with data:", articleData);
+    try {
+      const response = await api.put(`/articles/${slug}`, {
+        article: articleData,
+      });
+      console.log("API: Article updated successfully:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("API: Error updating article:", error);
+      throw error;
+    }
+  },
+
+  deleteArticle: async (slug: string): Promise<void> => {
+    await api.delete(`/articles/${slug}`);
   },
 };
 

@@ -161,13 +161,6 @@
   box-shadow: none;
 }
 
-/* Checkmark only for buttons with text "Sign Up", "Save Changes", "Update Settings" */
-.auth-button:not([data-no-icon])::before {
-  content: "✓";
-  font-size: 14px;
-  font-weight: bold;
-}
-
 .auth-links {
   text-align: center;
   font-size: 14px;

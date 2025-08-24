@@ -32,7 +32,7 @@ const Header: React.FC = () => {
 
             {user ? (
               <>
-                <Link to="/new-post" className="nav-link">
+                <Link to="/new-article" className="nav-link">
                   <img src={newPostIcon} alt="New Post" className="nav-icon" />
                   New Post
                 </Link>

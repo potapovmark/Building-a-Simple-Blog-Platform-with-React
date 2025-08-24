@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { articlesApi } from "../services/api";
 import { Article } from "../types";
+import { useAuth } from "../contexts/AuthContext";
 import "./ArticleDetail.css";
 
 const ArticleDetail: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const [article, setArticle] = useState<Article | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
     if (slug) {
@@ -36,6 +41,21 @@ const ArticleDetail: React.FC = () => {
       month: "long",
       year: "numeric",
     });
+  };
+
+  const handleDelete = async () => {
+    if (!article || !slug) return;
+
+    try {
+      setIsDeleting(true);
+      await articlesApi.deleteArticle(slug);
+      navigate("/");
+    } catch (err) {
+      setError("Error deleting article");
+    } finally {
+      setIsDeleting(false);
+      setShowDeleteModal(false);
+    }
   };
 
   if (loading) {
@@ -80,6 +100,20 @@ const ArticleDetail: React.FC = () => {
 
       <h1 className="article-title">{article.title}</h1>
 
+      {user && user.username === article.author.username && (
+        <div className="article-actions">
+          <Link to={`/articles/${slug}/edit`} className="edit-button">
+            ✏️ Edit Article
+          </Link>
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="delete-button"
+          >
+            🗑️ Delete Article
+          </button>
+        </div>
+      )}
+
       <p className="article-description">{article.description}</p>
 
       <div className="article-tags">
@@ -97,6 +131,32 @@ const ArticleDetail: React.FC = () => {
       <div className="back-link">
         <Link to="/">← Back to articles</Link>
       </div>
+
+      {showDeleteModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Delete Article</h3>
+            <p>Are you sure you want to delete "{article.title}"?</p>
+            <p>This action cannot be undone.</p>
+            <div className="modal-actions">
+              <button
+                onClick={() => setShowDeleteModal(false)}
+                className="cancel-button"
+                disabled={isDeleting}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                className="delete-confirm-button"
+                disabled={isDeleting}
+              >
+                {isDeleting ? "Deleting..." : "Delete"}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
