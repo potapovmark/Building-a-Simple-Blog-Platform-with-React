@@ -6,7 +6,7 @@
 
 **Vercel**: [https://realworld-blog-platform.vercel.app](https://realworld-blog-platform.vercel.app)
 
-*Примечание: Ссылка будет активна после деплоя на Vercel*
+_Примечание: Ссылка будет активна после деплоя на Vercel_
 
 ## Функциональность
 
@@ -140,6 +140,7 @@ src/
 ### Развертывание на Vercel (рекомендуется)
 
 1. **Подготовка проекта**
+
    ```bash
    npm run build
    ```

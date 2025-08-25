@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   return (
     <AuthProvider>
-      <Router basename="/Building-a-Simple-Blog-Platform-with-React">
+      <Router>
         <div className="App">
           <Header />
           <main className="main-content">
