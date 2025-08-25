@@ -2,14 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { articlesApi } from "../services/api";
 import { Article } from "../types";
+import { useAuth } from "../contexts/AuthContext";
 import "./ArticleList.css";
 
 const ArticleList: React.FC = () => {
+  const { user } = useAuth();
   const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [favoritingSlugs, setFavoritingSlugs] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     fetchArticles(currentPage);
@@ -26,6 +29,35 @@ const ArticleList: React.FC = () => {
       setError("Error loading articles");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleFavorite = async (article: Article) => {
+    if (!user) return;
+
+    try {
+      setFavoritingSlugs(prev => new Set(prev).add(article.slug));
+      
+      let response: any;
+      if (article.favorited) {
+        response = await articlesApi.unfavoriteArticle(article.slug);
+      } else {
+        response = await articlesApi.favoriteArticle(article.slug);
+      }
+
+      setArticles(prevArticles => 
+        prevArticles.map(prevArticle => 
+          prevArticle.slug === article.slug ? response.article : prevArticle
+        )
+      );
+    } catch (err) {
+      console.error("Error updating favorite status:", err);
+    } finally {
+      setFavoritingSlugs(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(article.slug);
+        return newSet;
+      });
     }
   };
 
@@ -69,10 +101,14 @@ const ArticleList: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="like-button">
-              <span className="heart">♡</span>
+            <button
+              className={`like-button ${article.favorited ? "favorited" : ""}`}
+              onClick={() => handleFavorite(article)}
+              disabled={favoritingSlugs.has(article.slug) || !user}
+            >
+              <span className="heart">{article.favorited ? "❤️" : "♡"}</span>
               <span className="likes-count">{article.favoritesCount}</span>
-            </div>
+            </button>
           </div>
 
           <Link to={`/articles/${article.slug}`} className="article-title">
