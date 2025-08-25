@@ -96,8 +96,8 @@ const EditArticle: React.FC = () => {
       };
 
       console.log("Updating article data:", articleData);
-      await articlesApi.updateArticle(slug!, articleData);
-      navigate(`/articles/${slug}`);
+      const response = await articlesApi.updateArticle(slug!, articleData);
+      navigate(`/articles/${response.article.slug}`);
     } catch (error: any) {
       if (error.response?.data?.errors) {
         const errorMessages = Object.values(error.response.data.errors).flat();

@@ -80,6 +80,29 @@
   background: #f8f9fa;
 }
 
+.like-button:hover:not(:disabled) {
+  background: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.like-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.like-button.favorited {
+  background: #5cb85c;
+  color: white;
+}
+
+.like-button.favorited .heart {
+  color: white;
+}
+
+.like-button.favorited .likes-count {
+  color: white;
+}
+
 .heart {
   color: #5cb85c;
   font-size: 14px;

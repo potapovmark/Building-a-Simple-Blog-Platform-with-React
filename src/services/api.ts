@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import axios from "axios";
 import {
   ArticlesResponse,
@@ -80,6 +81,30 @@ export const articlesApi = {
 
   deleteArticle: async (slug: string): Promise<void> => {
     await api.delete(`/articles/${slug}`);
+  },
+
+  favoriteArticle: async (slug: string): Promise<SingleArticleResponse> => {
+    console.log("API: Favoriting article:", slug);
+    try {
+      const response = await api.post(`/articles/${slug}/favorite`);
+      console.log("API: Article favorited successfully:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("API: Error favoriting article:", error);
+      throw error;
+    }
+  },
+
+  unfavoriteArticle: async (slug: string): Promise<SingleArticleResponse> => {
+    console.log("API: Unfavoriting article:", slug);
+    try {
+      const response = await api.delete(`/articles/${slug}/favorite`);
+      console.log("API: Article unfavorited successfully:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("API: Error unfavoriting article:", error);
+      throw error;
+    }
   },
 };
 

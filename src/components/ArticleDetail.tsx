@@ -15,7 +15,7 @@ const ArticleDetail: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  const [isFavoriting, setIsFavoriting] = useState(false);
   useEffect(() => {
     if (slug) {
       fetchArticle(slug);
@@ -41,6 +41,27 @@ const ArticleDetail: React.FC = () => {
       month: "long",
       year: "numeric",
     });
+  };
+
+  const handleFavorite = async () => {
+    if (!user || !article || !slug) return;
+
+    try {
+      setIsFavoriting(true);
+      let response;
+
+      if (article.favorited) {
+        response = await articlesApi.unfavoriteArticle(slug);
+      } else {
+        response = await articlesApi.favoriteArticle(slug);
+      }
+
+      setArticle(response.article);
+    } catch (err) {
+      setError("Error updating favorite status");
+    } finally {
+      setIsFavoriting(false);
+    }
   };
 
   const handleDelete = async () => {
@@ -92,10 +113,14 @@ const ArticleDetail: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="like-button">
-          <span className="heart">♡</span>
+        <button
+          className={`like-button ${article.favorited ? "favorited" : ""}`}
+          onClick={handleFavorite}
+          disabled={isFavoriting || !user}
+        >
+          <span className="heart">{article.favorited ? "❤️" : "♡"}</span>
           <span className="likes-count">{article.favoritesCount}</span>
-        </div>
+        </button>
       </div>
 
       <h1 className="article-title">{article.title}</h1>
