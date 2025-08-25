@@ -2,7 +2,7 @@
   "name": "realworld-blog",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://potapovmark.github.io/Building-a-Simple-Blog-Platform-with-React",
+  "homepage": ".",
   "dependencies": {
     "@hookform/resolvers": "^5.2.1",
     "@types/node": "^16.18.126",

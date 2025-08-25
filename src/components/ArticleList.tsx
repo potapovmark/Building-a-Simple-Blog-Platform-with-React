@@ -12,7 +12,9 @@ const ArticleList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [favoritingSlugs, setFavoritingSlugs] = useState<Set<string>>(new Set());
+  const [favoritingSlugs, setFavoritingSlugs] = useState<Set<string>>(
+    new Set(),
+  );
 
   useEffect(() => {
     fetchArticles(currentPage);
@@ -36,8 +38,8 @@ const ArticleList: React.FC = () => {
     if (!user) return;
 
     try {
-      setFavoritingSlugs(prev => new Set(prev).add(article.slug));
-      
+      setFavoritingSlugs((prev) => new Set(prev).add(article.slug));
+
       let response: any;
       if (article.favorited) {
         response = await articlesApi.unfavoriteArticle(article.slug);
@@ -45,15 +47,16 @@ const ArticleList: React.FC = () => {
         response = await articlesApi.favoriteArticle(article.slug);
       }
 
-      setArticles(prevArticles => 
-        prevArticles.map(prevArticle => 
-          prevArticle.slug === article.slug ? response.article : prevArticle
-        )
+      setArticles((prevArticles) =>
+        prevArticles.map((prevArticle) =>
+          prevArticle.slug === article.slug ? response.article : prevArticle,
+        ),
       );
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error("Error updating favorite status:", err);
     } finally {
-      setFavoritingSlugs(prev => {
+      setFavoritingSlugs((prev) => {
         const newSet = new Set(prev);
         newSet.delete(article.slug);
         return newSet;

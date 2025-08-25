@@ -95,6 +95,7 @@ const EditArticle: React.FC = () => {
         tagList,
       };
 
+      // eslint-disable-next-line no-console
       console.log("Updating article data:", articleData);
       const response = await articlesApi.updateArticle(slug!, articleData);
       navigate(`/articles/${response.article.slug}`);
@@ -111,6 +112,7 @@ const EditArticle: React.FC = () => {
           "An error occurred while updating the article. Please try again.",
         );
       }
+      // eslint-disable-next-line no-console
       console.error("Article update error:", error);
     } finally {
       setIsSubmitting(false);

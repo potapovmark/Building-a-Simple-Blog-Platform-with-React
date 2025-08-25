@@ -12,6 +12,7 @@ const Header: React.FC = () => {
   const { user, logout, userVersion } = useAuth();
 
   // Отладочная информация
+  // eslint-disable-next-line no-console
   console.log("Header render - user:", user?.username, "version:", userVersion);
 
   const handleLogout = () => {
