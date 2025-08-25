@@ -4,9 +4,9 @@
 
 ## 🌐 Живой деплой
 
-**Vercel**: [https://realworld-blog-platform.vercel.app](https://realworld-blog-platform.vercel.app)
+**Vercel**: [https://building-a-simple-blog-platform-with-react-2eygypxo2.vercel.app](https://building-a-simple-blog-platform-with-react-2eygypxo2.vercel.app)
 
-_Примечание: Ссылка будет активна после деплоя на Vercel_
+_Примечание: Приложение уже развернуто на Vercel_
 
 ## Функциональность
 
