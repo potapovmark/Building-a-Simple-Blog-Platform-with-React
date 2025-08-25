@@ -4,7 +4,7 @@
 
 ## 🌐 Живой деплой
 
-**Vercel**: [https://building-a-simple-blog-platform-with-react-2eygypxo2.vercel.app](https://building-a-simple-blog-platform-with-react-2eygypxo2.vercel.app)
+**Vercel**: [https://building-a-simple-blog-platform-with-react-ohvm-6irsba84q.vercel.app](https://building-a-simple-blog-platform-with-react-ohvm-6irsba84q.vercel.app)
 
 _Примечание: Приложение уже развернуто на Vercel_
 
