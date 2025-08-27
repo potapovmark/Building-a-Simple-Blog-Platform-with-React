@@ -141,13 +141,17 @@ const ArticleDetail: React.FC = () => {
 
       <p className="article-description">{article.description}</p>
 
-      <div className="article-tags">
-        {article.tagList.map((tag, index) => (
-          <span key={index} className="tag">
-            {tag}
-          </span>
-        ))}
-      </div>
+      {article.tagList && article.tagList.length > 0 && article.tagList.some(tag => tag && tag.trim() !== '') && (
+        <div className="article-tags">
+          {article.tagList
+            .filter(tag => tag && tag.trim() !== '')
+            .map((tag, index) => (
+              <span key={index} className="tag">
+                {tag}
+              </span>
+            ))}
+        </div>
+      )}
 
       <div className="article-body">
         <ReactMarkdown>{article.body}</ReactMarkdown>
