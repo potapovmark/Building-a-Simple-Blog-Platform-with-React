@@ -96,15 +96,19 @@ const ArticleDetail: React.FC = () => {
       <div className="article-header">
         <div className="article-meta">
           <div className="author-info">
-            <div className="author-avatar">
-              <img
-                src={
-                  article.author.image ||
-                  process.env.PUBLIC_URL + "/default-avatar.svg"
-                }
-                alt={article.author.username}
-              />
-            </div>
+                          <div className="author-avatar">
+                <img
+                  src={
+                    article.author.image ||
+                    process.env.PUBLIC_URL + "/default-avatar.svg"
+                  }
+                  alt={article.author.username}
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = process.env.PUBLIC_URL + "/default-avatar.svg";
+                  }}
+                />
+              </div>
             <div className="author-details">
               <span className="author-name">{article.author.username}</span>
               <span className="article-date">
