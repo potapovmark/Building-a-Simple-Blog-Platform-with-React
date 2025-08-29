@@ -103,19 +103,10 @@ const ArticleDetail: React.FC = () => {
                   process.env.PUBLIC_URL + "/default-avatar.svg"
                 }
                 alt={article.author.username}
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = process.env.PUBLIC_URL + "/default-avatar.svg";
-                }}
               />
             </div>
             <div className="author-details">
-              <Link
-                to={`/profiles/${article.author.username}`}
-                className="author-name"
-              >
-                {article.author.username}
-              </Link>
+              <span className="author-name">{article.author.username}</span>
               <span className="article-date">
                 {formatDate(article.createdAt)}
               </span>
@@ -150,19 +141,17 @@ const ArticleDetail: React.FC = () => {
 
       <p className="article-description">{article.description}</p>
 
-      {article.tagList &&
-        article.tagList.length > 0 &&
-        article.tagList.some((tag) => tag && tag.trim() !== "") && (
-          <div className="article-tags">
-            {article.tagList
-              .filter((tag) => tag && tag.trim() !== "")
-              .map((tag, index) => (
-                <span key={index} className="tag">
-                  {tag}
-                </span>
-              ))}
-          </div>
-        )}
+      {article.tagList.length > 0 && article.tagList.some(tag => tag && tag.trim() !== '') && (
+        <div className="article-tags">
+          {article.tagList
+            .filter(tag => tag && tag.trim() !== '')
+            .map((tag, index) => (
+              <span key={index} className="tag">
+                {tag}
+              </span>
+            ))}
+        </div>
+      )}
 
       <div className="article-body">
         <ReactMarkdown>{article.body}</ReactMarkdown>

@@ -43,17 +43,6 @@ export const articlesApi = {
     return response.data;
   },
 
-  getArticlesByAuthor: async (
-    username: string,
-    page: number = 1,
-    limit: number = 10,
-  ): Promise<ArticlesResponse> => {
-    const response = await api.get(
-      `/articles?author=${username}&limit=${limit}&offset=${(page - 1) * limit}`,
-    );
-    return response.data;
-  },
-
   getArticle: async (slug: string): Promise<SingleArticleResponse> => {
     const response = await api.get(`/articles/${slug}`);
     return response.data;

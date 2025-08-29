@@ -9,7 +9,6 @@ import SignUp from "./pages/SignUp";
 import Settings from "./pages/Settings";
 import NewPost from "./pages/NewPost";
 import EditArticle from "./pages/EditArticle";
-import UserProfile from "./components/UserProfile";
 import "./App.css";
 
 function App() {
@@ -28,7 +27,6 @@ function App() {
               <Route path="/settings" element={<Settings />} />
               <Route path="/new-article" element={<NewPost />} />
               <Route path="/articles/:slug/edit" element={<EditArticle />} />
-              <Route path="/profiles/:username" element={<UserProfile />} />
             </Routes>
           </main>
         </div>
